@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, status
 from typing import Optional
 from models import WordResponse, WordsResponse, About
 from about import ABOUT
@@ -123,7 +123,8 @@ def get_words(
     "/words",
     summary="Add a new word",
     description="Add a new word into DB. A new item can have custom attributes.",
-    tags=["main"]
+    tags=["main"],
+    status_code=status.HTTP_201_CREATED
 )
 def post_word(request: WordResponse) -> WordResponse:
     """
@@ -162,7 +163,7 @@ def get_word(word: str) -> WordResponse:
             response.translations = {translation["output_language"]: translation["output"]}
         except Exception as e:
             logger.error(f"Error while translating: {e}")
-            raise HTTPException(status_code=404, detail="Word not found")
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Word '{word}' was not found")
         # Store info into DB
         try:
             redis_client.set(name=response.word, value=response.model_dump_json())
@@ -175,18 +176,18 @@ def get_word(word: str) -> WordResponse:
     "/words/{word}",
     summary="Delete a word",
     description="Delete a word from DB.",
-    tags=["main"]
+    tags=["main"],
+    status_code=status.HTTP_204_NO_CONTENT
 )
-def delete_word(word: str) -> dict:
+def delete_word(word: str) -> None:
     """
     Delete given word from DB
     :param word: Word to be deleted
     :return: API response as dict
     """
     redis_client.delete(word)
-    response_msg = f"Word '{word}' has been deleted from DB"
-    logger.debug(response_msg)
-    return {"detail": response_msg}
+    logger.debug(f"Word '{word}' has been deleted from DB")
+    return None
 
 
 if __name__ == "__main__":
