@@ -71,7 +71,6 @@ merriam-webster:
 ```
 ## Usage
 ### Configuration
-#### Application
 #### Logging
 `config/logging_config.yaml` file can be used to configure logging. 
 Logs format and logging level can be adjusted for different components separately within this file.
@@ -183,7 +182,7 @@ should be added. They contain Yandex and Merriam-Webster API keys respectively.
 
 ![Postman UI](imgs/postman.png)
 
-## Limitations
+## Limitations and todos
 1. Current version does not support persistent DB storage. 
 All data stored in Redis DB vanishes once the Redis container restarts.
 2. Docker-compose configuration support only load balancing between application containers. 
@@ -193,3 +192,4 @@ Load balancer itself and Redis DB do not support HA and can be considered as a s
 5. Parallel processing is not implemented. Parallel requests to external services can improve general performance.
 6. Only EN -> RU translations are supported
 7. Not flexible and non-optimal mechanism for filtering DB items attributes is used.
+8. App configuration approach should be re-factored to store all parameters in a single place
