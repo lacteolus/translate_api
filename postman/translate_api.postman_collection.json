@@ -1,0 +1,284 @@
+{
+	"info": {
+		"_postman_id": "efea0dbd-3556-483a-b08d-7c1b1036a046",
+		"name": "Translate API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14429644",
+		"_collection_link": "https://warped-resonance-577019.postman.co/workspace/AMG~29434b18-4413-44bb-bc93-4ac74884e26e/collection/14429644-efea0dbd-3556-483a-b08d-7c1b1036a046?action=share&source=collection_link&creator=14429644"
+	},
+	"item": [
+		{
+			"name": "External APIs",
+			"item": [
+				{
+					"name": "Merriam-Webster Dictionary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.dictionaryapi.com/api/v3/references/collegiate/json/challenge?key={{mw_dictionary_key}}",
+							"protocol": "https",
+							"host": [
+								"www",
+								"dictionaryapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"v3",
+								"references",
+								"collegiate",
+								"json",
+								"challenge"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{mw_dictionary_key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Merriam-Webster Thesaurus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/challenge?key={{mw_thesaurus_key}}",
+							"protocol": "https",
+							"host": [
+								"www",
+								"dictionaryapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"v3",
+								"references",
+								"thesaurus",
+								"json",
+								"challenge"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{mw_thesaurus_key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Yandex",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "Api-Key {{yandex_key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sourceLanguageCode\": \"en\",\r\n  \"targetLanguageCode\": \"ru\",\r\n  \"format\": \"PLAIN_TEXT\",\r\n  \"texts\": [\r\n    \"challenge\"\r\n  ],\r\n  \"speller\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://translate.api.cloud.yandex.net/translate/v2/translate",
+							"protocol": "https",
+							"host": [
+								"translate",
+								"api",
+								"cloud",
+								"yandex",
+								"net"
+							],
+							"path": [
+								"translate",
+								"v2",
+								"translate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get words from DB",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/words?page_size=10&page_num=0&offset=0",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"words"
+					],
+					"query": [
+						{
+							"key": "page_size",
+							"value": "10"
+						},
+						{
+							"key": "page_num",
+							"value": "0"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a word",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/words/test",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"words",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a word",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/words/test",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"words",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a new word",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"word\": \"king\",\r\n  \"definitions\": [\r\n    \"a person of rank, power, or influence in a particular field\",\r\n    \"the being worshipped as the creator and ruler of the universe\"\r\n  ],\r\n  \"translations\": {\r\n    \"ru\": [\r\n      \"король\"\r\n    ]\r\n  },\r\n  \"synonyms\": [\r\n    \"baron\",\r\n    \"captain\",\r\n    \"czar\",\r\n    \"lion\",\r\n    \"lord\",\r\n    \"magnate\",\r\n    \"mogul\",\r\n    \"monarch\",\r\n    \"Napoleon\",\r\n    \"prince\",\r\n    \"tycoon\"\r\n  ],\r\n  \"examples\": [\r\n    \"the undisputed {it}king{/it} of automobile sales for the entire metropolitan area\"\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/words",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"words"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "About API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/about?debug=true",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"about"
+					],
+					"query": [
+						{
+							"key": "debug",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "port",
+			"value": "8000",
+			"type": "string"
+		},
+		{
+			"key": "host",
+			"value": "localhost",
+			"type": "string"
+		}
+	]
+}

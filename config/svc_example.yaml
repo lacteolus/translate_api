@@ -1,0 +1,6 @@
+yandex:
+  api_key: "AC3NCu9n-Fp7fdTbEMEJ4QVNLTPxHdgfr2f9"
+  api_base_url: "https://translate.api.cloud.yandex.net/translate/v2/translate"
+merriam-webster:
+  api_key: "e6452f4b-45a9-47f67-2356-89815a9acc70"
+  api_base_url: "https://www.dictionaryapi.com/api/v3/references/thesaurus/json"
