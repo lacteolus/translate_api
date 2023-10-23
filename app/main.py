@@ -80,7 +80,16 @@ def get_about(
     description="Get all words from DB with pagination and filtering.",
     tags=["main"]
 )
-def get_words(page_size: int = 10, page_num: int = 0, offset: int = 0, search: Optional[str] = "") -> WordsResponse:
+def get_words(
+        page_size: int = 10,
+        page_num: int = 0,
+        offset: int = 0,
+        search: Optional[str] = "",
+        translations: bool = False,
+        synonyms: bool = False,
+        definitions: bool = False,
+        examples: bool = False
+) -> WordsResponse:
     """
     Get all words from DB
     """
@@ -98,6 +107,14 @@ def get_words(page_size: int = 10, page_num: int = 0, offset: int = 0, search: O
     for item in list(islice(items_iter, start_idx, end_idx)):
         word_item = redis_client.get(item)
         word = WordResponse(**json.loads(word_item))
+        if not translations:
+            word.translations = []
+        if not synonyms:
+            word.synonyms = []
+        if not definitions:
+            word.definitions = []
+        if not examples:
+            word.examples = []
         response.words.append(word)
     return response
 

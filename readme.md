@@ -192,3 +192,4 @@ Load balancer itself and Redis DB do not support HA and can be considered as a s
 4. Exceptions handling should be improved before going to prod.
 5. Parallel processing is not implemented. Parallel requests to external services can improve general performance.
 6. Only EN -> RU translations are supported
+7. Not flexible and non-optimal mechanism for filtering DB items attributes is used.
