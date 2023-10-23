@@ -2,6 +2,22 @@
 TranslationAPI can be used as a simple solution translation/thesaurus service. It utilizes third-party public services to provide translation and thesaurus functionality.
 Results from external services are cached using local DB.
 
+1. [Architecture of the solution](#architecture-of-the-solution)
+2. [Pre-requisites](#pre-requisites)
+   - [Google Translation API](#google-translation-api)
+   - [Yandex Cloud Translate API](#yandex-cloud-translate-api)
+   - [Merriam-Webster API](#merriam-webster-api)
+3. [Usage](#usage)
+   - [Configuration](#configuration)
+      - [Logging](#logging)
+   - [Production-like running](#production-like-running)
+   - [Local running](#local-running)
+4. [API Documentation and testing](#api-documentation-and-testing)
+   - [Swagger](#swagger)
+   - [Redoc](#redoc)
+   - [Postman](#postman)
+5. [Limitations and todos](#limitations-and-todos)
+
 ## Architecture of the solution
 
 ![Diagram](imgs/diagram.drawio.png)
